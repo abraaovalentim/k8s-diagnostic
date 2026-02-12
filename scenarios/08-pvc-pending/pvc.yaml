@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: scenario-8
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: bad-pvc
+  namespace: scenario-8
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: storage-inexistente
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pvc-app
+  namespace: scenario-8
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pvc-app
+  template:
+    metadata:
+      labels:
+        app: pvc-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          volumeMounts:
+            - mountPath: "/data"
+              name: storage
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: bad-pvc
