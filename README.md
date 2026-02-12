@@ -107,8 +107,8 @@ sh cluster/setup-cluster.sh
 ## 2. Executar Experimento Completo
 
 ```bash
-chmod +x run-experiment.sh
-./run-experiment.sh
+chmod +x scripts/run-experiment.sh
+./scripts/run-experiment.sh
 ```
 ---
 # OU
