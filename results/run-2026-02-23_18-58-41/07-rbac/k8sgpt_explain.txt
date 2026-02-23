@@ -1,0 +1,33 @@
+   0% |                                                | (0/3, 0 it/hr) [0s:0s]                                                                                 33% |██████████████                               | (1/3, 2 it/min) [25s:50s]                                                                                 66% |██████████████████████████████                | (2/3, 6 it/min) [44s:9s]                                                                                100% |█████████████████████████████████████████████| (3/3, 3 it/min)
+AI Provider: ollama
+
+0: Deployment 07-rbac/rbac-test()
+- Error: Deployment 07-rbac/rbac-test has 1 replicas but 0 are available with status running
+Error: Deployment "07-rbac/rbac-test" has 1 replicas but 0 are available with status running.
+
+Solution: 
+1. Check pod logs for errors using `kubectl logs -f <pod_name>`.
+2. Verify if the deployment is stuck in a pending state due to network issues or resource constraints.
+3. Scale down and then back up the deployment to force recreation of pods.
+4. If still not working, check RBAC (Role-Based Access Control) configuration for any restrictions on pod creation.
+
+Note: This solution assumes that the issue is not related to a larger problem with the cluster or a more complex deployment setup.
+1: ConfigMap 07-rbac/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace.
+
+Solution: 
+1. Check if the ConfigMap is actually created: `kubectl get configmaps`
+2. Verify if the ConfigMap is referenced in a Deployment or Pod YAML file.
+3. If not, create a new Deployment or Pod that uses the ConfigMap as a volume mount.
+4. Apply the changes with `kubectl apply` and verify the pod is running successfully.
+2: Pod 07-rbac/rbac-test-cb7dcb677-blcpw(Deployment/rbac-test)
+- Error: the last termination reason is Error container=kubectl pod=rbac-test-cb7dcb677-blcpw
+Error: The pod terminated due to an error in one of its containers.
+
+Solution: 
+1. Check the container logs using `kubectl logs -n <namespace> rbac-test-cb7dcb677-blcpw`.
+2. Identify the issue causing the container failure.
+3. Fix the issue or update the container image if necessary.
+4. Restart the pod using `kubectl rollout restart deployment <deployment-name>` (if deployed) or `kubectl apply -f <pod-definition-file>.yaml`.
+

@@ -1,0 +1,17 @@
+NAME                                  READY   STATUS                       RESTARTS   AGE   IP              NODE             NOMINATED NODE   READINESS GATES
+pod/missing-config-777c8c7857-796gm   0/1     CreateContainerConfigError   0          15s   192.168.50.71   tcc-lab-worker   <none>           <none>
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES         SELECTOR
+deployment.apps/missing-config   0/1     1            0           15s   nginx        nginx:latest   app=missing-config
+
+NAME                                        DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+replicaset.apps/missing-config-777c8c7857   1         1         0       15s   nginx        nginx:latest   app=missing-config,pod-template-hash=777c8c7857
+
+LAST SEEN   TYPE      REASON              OBJECT                                 SUBOBJECT                SOURCE                    MESSAGE                                                                                        FIRST SEEN   COUNT   NAME
+15s         Normal    Scheduled           pod/missing-config-777c8c7857-796gm                             default-scheduler         Successfully assigned 03-missing-configmap/missing-config-777c8c7857-796gm to tcc-lab-worker   15s          1       event/missing-config-777c8c7857-796gm.1896ff2a4e863a81
+0s          Normal    Pulling             pod/missing-config-777c8c7857-796gm    spec.containers{nginx}   kubelet, tcc-lab-worker   Pulling image "nginx:latest"                                                                   14s          3       event/missing-config-777c8c7857-796gm.1896ff2a7af0d967
+14s         Normal    Pulled              pod/missing-config-777c8c7857-796gm    spec.containers{nginx}   kubelet, tcc-lab-worker   Successfully pulled image "nginx:latest" in 665.478056ms (665.482744ms including waiting)      14s          1       event/missing-config-777c8c7857-796gm.1896ff2aa29b8235
+12s         Warning   Failed              pod/missing-config-777c8c7857-796gm    spec.containers{nginx}   kubelet, tcc-lab-worker   Error: configmap "config-inexistente" not found                                                14s          2       event/missing-config-777c8c7857-796gm.1896ff2aa29ca804
+12s         Normal    Pulled              pod/missing-config-777c8c7857-796gm    spec.containers{nginx}   kubelet, tcc-lab-worker   Successfully pulled image "nginx:latest" in 650.695325ms (650.707507ms including waiting)      12s          1       event/missing-config-777c8c7857-796gm.1896ff2ae94fd3f6
+15s         Normal    SuccessfulCreate    replicaset/missing-config-777c8c7857                            replicaset-controller     Created pod: missing-config-777c8c7857-796gm                                                   15s          1       event/missing-config-777c8c7857.1896ff2a4e4586e9
+15s         Normal    ScalingReplicaSet   deployment/missing-config                                       deployment-controller     Scaled up replica set missing-config-777c8c7857 to 1                                           15s          1       event/missing-config.1896ff2a4df038f7

@@ -1,0 +1,13 @@
+   0% |                                                | (0/1, 0 it/hr) [0s:0s]                                                                                100% |██████████████████████████████████████████████| (1/1, 2 it/min)
+AI Provider: ollama
+
+0: ConfigMap 05-networkpolicy/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace.
+
+Solution: 
+1. Check if the ConfigMap is being referenced by a pod's deployment YAML file.
+2. Verify that the ConfigMap name matches exactly with the one mentioned in the error message (kube-root-ca.crt).
+3. Ensure that the ConfigMap is correctly applied to the namespace using `kubectl apply -f configmap.yaml` or `kubectl create configmap kube-root-ca.crt --from-literal=DATA=<ca-certificate-content>`.
+4. If still not working, try deleting and re-creating the ConfigMap.
+

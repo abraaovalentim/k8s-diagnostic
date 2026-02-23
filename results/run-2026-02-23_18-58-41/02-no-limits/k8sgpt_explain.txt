@@ -1,0 +1,20 @@
+   0% |                                                | (0/2, 0 it/hr) [0s:0s]                                                                                 50% |██████████████████████                       | (1/2, 3 it/min) [18s:18s]                                                                                100% |██████████████████████████████████████████████| (2/2, 3 it/min)
+AI Provider: ollama
+
+0: Deployment 02-no-limits/no-limits()
+- Error: Deployment 02-no-limits/no-limits has 1 replicas but 0 are available with status running
+Error: Deployment "02-no-limits/no-limits" has 1 replica but 0 are available with status running.
+
+Solution: 
+1. Check pod logs for errors using `kubectl logs <pod_name>`.
+2. Verify container port is exposed correctly.
+3. Ensure network policies allow traffic to the pods.
+4. If still not working, try restarting the deployment with `kubectl rollout restart <deployment_name>`.
+1: ConfigMap 02-no-limits/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace.
+
+Solution: 
+1. Check if the ConfigMap is created correctly using `kubectl get configmap kube-root-ca.crt -o yaml`.
+2. Verify if the ConfigMap is being used by any pods in the namespace using `kubectl get pods -n <namespace> -l "configmap=kube-root-ca.crt"`.
+

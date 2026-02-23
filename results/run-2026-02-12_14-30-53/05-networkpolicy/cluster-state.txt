@@ -1,0 +1,20 @@
+NAME                          READY   STATUS    RESTARTS   AGE   IP           NODE                    NOMINATED NODE   READINESS GATES
+pod/server-6978b46cd7-sk2m4   1/1     Running   0          15s   10.244.0.9   tcc-lab-control-plane   <none>           <none>
+
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES         SELECTOR
+deployment.apps/server   1/1     1            1           15s   nginx        nginx:latest   app=server
+
+NAME                                DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+replicaset.apps/server-6978b46cd7   1         1         1       15s   nginx        nginx:latest   app=server,pod-template-hash=6978b46cd7
+
+LAST SEEN   TYPE     REASON              OBJECT                         SUBOBJECT                SOURCE                           MESSAGE                                                                                     FIRST SEEN   COUNT   NAME
+15s         Normal   Scheduled           pod/server-6978b46cd7-sk2m4                             default-scheduler                Successfully assigned 05-networkpolicy/server-6978b46cd7-sk2m4 to tcc-lab-control-plane     15s          1       event/server-6978b46cd7-sk2m4.1893904586ad3db7
+14s         Normal   Pulling             pod/server-6978b46cd7-sk2m4    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Pulling image "nginx:latest"                                                                14s          1       event/server-6978b46cd7-sk2m4.189390459d7e1bfc
+13s         Normal   Pulled              pod/server-6978b46cd7-sk2m4    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Successfully pulled image "nginx:latest" in 920.785351ms (920.791609ms including waiting)   13s          1       event/server-6978b46cd7-sk2m4.18939045d460716a
+13s         Normal   Created             pod/server-6978b46cd7-sk2m4    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Created container nginx                                                                     13s          1       event/server-6978b46cd7-sk2m4.18939045d57bd293
+13s         Normal   Started             pod/server-6978b46cd7-sk2m4    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Started container nginx                                                                     13s          1       event/server-6978b46cd7-sk2m4.18939045d97d46a0
+15s         Normal   SuccessfulCreate    replicaset/server-6978b46cd7                            replicaset-controller            Created pod: server-6978b46cd7-sk2m4                                                        15s          1       event/server-6978b46cd7.18939045860a5487
+15s         Normal   ScalingReplicaSet   deployment/server                                       deployment-controller            Scaled up replica set server-6978b46cd7 to 1                                                15s          1       event/server.1893904585b3e8c7
+
+NAME                                       POD-SELECTOR   AGE
+networkpolicy.networking.k8s.io/deny-all   <none>         15s

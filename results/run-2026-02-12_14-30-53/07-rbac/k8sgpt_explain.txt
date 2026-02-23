@@ -1,0 +1,33 @@
+   0% |                                                | (0/3, 0 it/hr) [0s:0s]                                                                                 33% |██████████████                               | (1/3, 3 it/min) [20s:41s]                                                                                 66% |█████████████████████████████                | (2/3, 5 it/min) [47s:13s]                                                                                100% |█████████████████████████████████████████████| (3/3, 3 it/min)
+AI Provider: ollama
+
+0: Deployment 07-rbac/rbac-test()
+- Error: Deployment 07-rbac/rbac-test has 1 replicas but 0 are available with status running
+Error: Deployment "07-rbac/rbac-test" has 1 replicas but 0 are available with status running.
+
+Solution: 
+1. Check deployment logs for errors using `kubectl logs -f <deployment-name>`.
+2. Verify pod is stuck in a specific state (e.g., CrashLoopBackOff) and troubleshoot the issue.
+3. If pods are not scaling up, check node availability and resource utilization.
+4. Try rolling back to a previous version or deleting and re-creating the deployment if necessary.
+1: ConfigMap 07-rbac/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace.
+
+Solution: 
+1. Check if the ConfigMap is created correctly using `kubectl get configmap kube-root-ca.crt -o yaml`.
+2. Verify if the ConfigMap is being used by any pods using `kubectl get pods -n <namespace> -l "configmap=kube-root-ca.crt"`.
+3. If no pods are using the ConfigMap, check if there are any Deployment or StatefulSet objects that reference this ConfigMap.
+4. Update or recreate the pods/deployments/statefulsets to use the ConfigMap.
+5. If still not working, try deleting and re-creating the ConfigMap.
+2: Pod 07-rbac/rbac-test-cb7dcb677-vxvmq(Deployment/rbac-test)
+- Error: the last termination reason is Error container=kubectl pod=rbac-test-cb7dcb677-vxvmq
+Error: The pod is terminated due to an error in one of its containers.
+
+Solution: 
+1. Check the container logs for errors using `kubectl logs rbac-test-cb7dcb677-vxvmq -c kubectl`.
+2. Verify if the container is running with correct permissions and roles.
+3. If the issue persists, try restarting the pod or deleting and recreating it.
+
+Note: The error message suggests that the termination reason is due to an error in the `kubectl` container itself, which is used for managing the pod.
+

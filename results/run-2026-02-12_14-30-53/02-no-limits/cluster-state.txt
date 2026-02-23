@@ -1,0 +1,17 @@
+NAME                             READY   STATUS    RESTARTS   AGE   IP           NODE                    NOMINATED NODE   READINESS GATES
+pod/no-limits-7bdd85c558-q6xgt   1/1     Running   0          15s   10.244.0.6   tcc-lab-control-plane   <none>           <none>
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES         SELECTOR
+deployment.apps/no-limits   1/1     1            1           15s   nginx        nginx:latest   app=no-limits
+
+NAME                                   DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+replicaset.apps/no-limits-7bdd85c558   1         1         1       15s   nginx        nginx:latest   app=no-limits,pod-template-hash=7bdd85c558
+
+LAST SEEN   TYPE     REASON              OBJECT                            SUBOBJECT                SOURCE                           MESSAGE                                                                                     FIRST SEEN   COUNT   NAME
+15s         Normal   Scheduled           pod/no-limits-7bdd85c558-q6xgt                             default-scheduler                Successfully assigned 02-no-limits/no-limits-7bdd85c558-q6xgt to tcc-lab-control-plane      15s          1       event/no-limits-7bdd85c558-q6xgt.1893901dabd21335
+15s         Normal   Pulling             pod/no-limits-7bdd85c558-q6xgt    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Pulling image "nginx:latest"                                                                15s          1       event/no-limits-7bdd85c558-q6xgt.1893901dc271ac54
+10s         Normal   Pulled              pod/no-limits-7bdd85c558-q6xgt    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Successfully pulled image "nginx:latest" in 4.932180623s (4.932186973s including waiting)   10s          1       event/no-limits-7bdd85c558-q6xgt.1893901ee86d0403
+10s         Normal   Created             pod/no-limits-7bdd85c558-q6xgt    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Created container nginx                                                                     10s          1       event/no-limits-7bdd85c558-q6xgt.1893901ee96323e4
+10s         Normal   Started             pod/no-limits-7bdd85c558-q6xgt    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Started container nginx                                                                     10s          1       event/no-limits-7bdd85c558-q6xgt.1893901eed596467
+15s         Normal   SuccessfulCreate    replicaset/no-limits-7bdd85c558                            replicaset-controller            Created pod: no-limits-7bdd85c558-q6xgt                                                     15s          1       event/no-limits-7bdd85c558.1893901dab89b7b1
+15s         Normal   ScalingReplicaSet   deployment/no-limits                                       deployment-controller            Scaled up replica set no-limits-7bdd85c558 to 1                                             15s          1       event/no-limits.1893901dab33b5a5

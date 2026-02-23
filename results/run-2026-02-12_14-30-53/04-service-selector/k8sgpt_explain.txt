@@ -1,0 +1,22 @@
+   0% |                                                | (0/2, 0 it/hr) [0s:0s]                                                                                 50% |██████████████████████                       | (1/2, 3 it/min) [18s:18s]                                                                                100% |██████████████████████████████████████████████| (2/2, 3 it/min)
+AI Provider: ollama
+
+0: ConfigMap 04-service-selector/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace.
+
+Solution: 
+1. Check if the ConfigMap is being referenced by a pod's spec.
+2. Verify that the ConfigMap is correctly applied to the namespace.
+3. If using a Deployment, check the deployment YAML file for correct references.
+4. Try rolling out a new version of the pod or re-apply the ConfigMap to see if it resolves the issue.
+1: Service 04-service-selector/wrong-service()
+- Error: Service has no endpoints, expected label app=app-wrong
+Error: Service has no endpoints, expected label app=app-wrong.
+
+Solution: 
+1. Check if the service is correctly deployed and running.
+2. Verify that the pod(s) associated with the service have the correct label `app=app-wrong`.
+3. If not, update the pods' labels to match the expected value.
+4. Restart the service or redeploy the pods for changes to take effect.
+

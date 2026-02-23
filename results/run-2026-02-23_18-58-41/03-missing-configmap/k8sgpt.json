@@ -1,0 +1,56 @@
+{
+  "provider": "",
+  "errors": null,
+  "status": "ProblemDetected",
+  "problems": 3,
+  "results": [
+    {
+      "kind": "Deployment",
+      "name": "03-missing-configmap/missing-config",
+      "error": [
+        {
+          "Text": "Deployment 03-missing-configmap/missing-config has 1 replicas but 0 are available with status running",
+          "KubernetesDoc": "",
+          "Sensitive": [
+            {
+              "Unmasked": "03-missing-configmap",
+              "Masked": "XiUpZTFhNDJMNSh1KT5NU0NPUzU="
+            },
+            {
+              "Unmasked": "missing-config",
+              "Masked": "RkBjeCgwWkJDNngyaDk="
+            }
+          ]
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "03-missing-configmap/kube-root-ca.crt",
+      "error": [
+        {
+          "Text": "ConfigMap kube-root-ca.crt is not used by any pods in the namespace",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "Pod",
+      "name": "03-missing-configmap/missing-config-777c8c7857-796gm",
+      "error": [
+        {
+          "Text": "configmap \"config-inexistente\" not found",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": "Deployment/missing-config"
+    }
+  ]
+}

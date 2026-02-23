@@ -1,0 +1,17 @@
+NAME                                  READY   STATUS                       RESTARTS   AGE   IP           NODE                    NOMINATED NODE   READINESS GATES
+pod/missing-config-777c8c7857-56qp5   0/1     CreateContainerConfigError   0          15s   10.244.0.7   tcc-lab-control-plane   <none>           <none>
+
+NAME                             READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES         SELECTOR
+deployment.apps/missing-config   0/1     1            0           15s   nginx        nginx:latest   app=missing-config
+
+NAME                                        DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+replicaset.apps/missing-config-777c8c7857   1         1         0       15s   nginx        nginx:latest   app=missing-config,pod-template-hash=777c8c7857
+
+LAST SEEN   TYPE      REASON              OBJECT                                 SUBOBJECT                SOURCE                           MESSAGE                                                                                               FIRST SEEN   COUNT   NAME
+15s         Normal    Scheduled           pod/missing-config-777c8c7857-56qp5                             default-scheduler                Successfully assigned 03-missing-configmap/missing-config-777c8c7857-56qp5 to tcc-lab-control-plane   15s          1       event/missing-config-777c8c7857-56qp5.189390266db247a6
+14s         Normal    Pulling             pod/missing-config-777c8c7857-56qp5    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Pulling image "nginx:latest"                                                                          15s          2       event/missing-config-777c8c7857-56qp5.189390268466c4aa
+14s         Normal    Pulled              pod/missing-config-777c8c7857-56qp5    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Successfully pulled image "nginx:latest" in 894.712608ms (894.719672ms including waiting)             14s          1       event/missing-config-777c8c7857-56qp5.18939026b9bb4604
+13s         Warning   Failed              pod/missing-config-777c8c7857-56qp5    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Error: configmap "config-inexistente" not found                                                       14s          2       event/missing-config-777c8c7857-56qp5.18939026b9bc39bf
+13s         Normal    Pulled              pod/missing-config-777c8c7857-56qp5    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Successfully pulled image "nginx:latest" in 906.534775ms (906.547736ms including waiting)             13s          1       event/missing-config-777c8c7857-56qp5.18939026fd1d6f07
+15s         Normal    SuccessfulCreate    replicaset/missing-config-777c8c7857                            replicaset-controller            Created pod: missing-config-777c8c7857-56qp5                                                          15s          1       event/missing-config-777c8c7857.189390266d7084b1
+15s         Normal    ScalingReplicaSet   deployment/missing-config                                       deployment-controller            Scaled up replica set missing-config-777c8c7857 to 1                                                  15s          1       event/missing-config.189390266d1c25d4

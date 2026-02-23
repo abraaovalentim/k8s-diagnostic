@@ -1,0 +1,14 @@
+NAME                             READY   STATUS              RESTARTS   AGE   IP       NODE             NOMINATED NODE   READINESS GATES
+pod/no-limits-7bdd85c558-x6qtf   0/1     ContainerCreating   0          15s   <none>   tcc-lab-worker   <none>           <none>
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES         SELECTOR
+deployment.apps/no-limits   0/1     1            0           15s   nginx        nginx:latest   app=no-limits
+
+NAME                                   DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+replicaset.apps/no-limits-7bdd85c558   1         1         0       15s   nginx        nginx:latest   app=no-limits,pod-template-hash=7bdd85c558
+
+LAST SEEN   TYPE     REASON              OBJECT                            SUBOBJECT                SOURCE                    MESSAGE                                                                           FIRST SEEN   COUNT   NAME
+15s         Normal   Scheduled           pod/no-limits-7bdd85c558-x6qtf                             default-scheduler         Successfully assigned 02-no-limits/no-limits-7bdd85c558-x6qtf to tcc-lab-worker   15s          1       event/no-limits-7bdd85c558-x6qtf.1896ff1e6a243e25
+15s         Normal   Pulling             pod/no-limits-7bdd85c558-x6qtf    spec.containers{nginx}   kubelet, tcc-lab-worker   Pulling image "nginx:latest"                                                      15s          1       event/no-limits-7bdd85c558-x6qtf.1896ff1e84bada21
+15s         Normal   SuccessfulCreate    replicaset/no-limits-7bdd85c558                            replicaset-controller     Created pod: no-limits-7bdd85c558-x6qtf                                           15s          1       event/no-limits-7bdd85c558.1896ff1e69d1e159
+15s         Normal   ScalingReplicaSet   deployment/no-limits                                       deployment-controller     Scaled up replica set no-limits-7bdd85c558 to 1                                   15s          1       event/no-limits.1896ff1e6989f8ee

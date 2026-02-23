@@ -1,13 +1,7 @@
 apiVersion: v1
-kind: Namespace
-metadata:
-  name: scenario-8
----
-apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: bad-pvc
-  namespace: scenario-8
 spec:
   accessModes:
     - ReadWriteOnce
@@ -20,7 +14,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pvc-app
-  namespace: scenario-8
 spec:
   replicas: 1
   selector:

@@ -1,0 +1,19 @@
+NAME                            READY   STATUS             RESTARTS     AGE   IP              NODE             NOMINATED NODE   READINESS GATES
+pod/rbac-test-cb7dcb677-blcpw   0/1     CrashLoopBackOff   1 (9s ago)   15s   192.168.50.75   tcc-lab-worker   <none>           <none>
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES            SELECTOR
+deployment.apps/rbac-test   0/1     1            0           15s   kubectl      bitnami/kubectl   app=rbac-test
+
+NAME                                  DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES            SELECTOR
+replicaset.apps/rbac-test-cb7dcb677   1         1         0       15s   kubectl      bitnami/kubectl   app=rbac-test,pod-template-hash=cb7dcb677
+
+LAST SEEN   TYPE      REASON              OBJECT                           SUBOBJECT                  SOURCE                    MESSAGE                                                                                                                       FIRST SEEN   COUNT   NAME
+15s         Normal    Scheduled           pod/rbac-test-cb7dcb677-blcpw                               default-scheduler         Successfully assigned 07-rbac/rbac-test-cb7dcb677-blcpw to tcc-lab-worker                                                     15s          1       event/rbac-test-cb7dcb677-blcpw.1896ff64bdbc5d61
+10s         Normal    Pulling             pod/rbac-test-cb7dcb677-blcpw    spec.containers{kubectl}   kubelet, tcc-lab-worker   Pulling image "bitnami/kubectl"                                                                                               14s          2       event/rbac-test-cb7dcb677-blcpw.1896ff64d85e563a
+10s         Normal    Pulled              pod/rbac-test-cb7dcb677-blcpw    spec.containers{kubectl}   kubelet, tcc-lab-worker   Successfully pulled image "bitnami/kubectl" in 4.078982135s (4.078989096s including waiting)                                  10s          1       event/rbac-test-cb7dcb677-blcpw.1896ff65cb7ef8ba
+9s          Normal    Created             pod/rbac-test-cb7dcb677-blcpw    spec.containers{kubectl}   kubelet, tcc-lab-worker   Created container kubectl                                                                                                     10s          2       event/rbac-test-cb7dcb677-blcpw.1896ff65cc9c55b6
+9s          Normal    Started             pod/rbac-test-cb7dcb677-blcpw    spec.containers{kubectl}   kubelet, tcc-lab-worker   Started container kubectl                                                                                                     10s          2       event/rbac-test-cb7dcb677-blcpw.1896ff65d1051188
+9s          Normal    Pulled              pod/rbac-test-cb7dcb677-blcpw    spec.containers{kubectl}   kubelet, tcc-lab-worker   Successfully pulled image "bitnami/kubectl" in 686.599943ms (686.606713ms including waiting)                                  9s           1       event/rbac-test-cb7dcb677-blcpw.1896ff6628826f45
+8s          Warning   BackOff             pod/rbac-test-cb7dcb677-blcpw    spec.containers{kubectl}   kubelet, tcc-lab-worker   Back-off restarting failed container kubectl in pod rbac-test-cb7dcb677-blcpw_07-rbac(917c709b-3f02-4d03-a699-1c0cce9aaceb)   9s           2       event/rbac-test-cb7dcb677-blcpw.1896ff663b61be19
+15s         Normal    SuccessfulCreate    replicaset/rbac-test-cb7dcb677                              replicaset-controller     Created pod: rbac-test-cb7dcb677-blcpw                                                                                        15s          1       event/rbac-test-cb7dcb677.1896ff64bd7eb9bf
+15s         Normal    ScalingReplicaSet   deployment/rbac-test                                        deployment-controller     Scaled up replica set rbac-test-cb7dcb677 to 1                                                                                15s          1       event/rbac-test.1896ff64bd21f3a8

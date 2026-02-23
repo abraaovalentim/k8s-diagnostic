@@ -1,0 +1,20 @@
+NAME                       READY   STATUS    RESTARTS   AGE   IP           NODE                    NOMINATED NODE   READINESS GATES
+pod/app-79999b6c5b-4dskm   1/1     Running   0          15s   10.244.0.8   tcc-lab-control-plane   <none>           <none>
+
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/wrong-service   ClusterIP   10.96.199.129   <none>        80/TCP    15s   app=app-wrong
+
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES         SELECTOR
+deployment.apps/app   1/1     1            1           15s   nginx        nginx:latest   app=app-correct
+
+NAME                             DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+replicaset.apps/app-79999b6c5b   1         1         1       15s   nginx        nginx:latest   app=app-correct,pod-template-hash=79999b6c5b
+
+LAST SEEN   TYPE     REASON              OBJECT                      SUBOBJECT                SOURCE                           MESSAGE                                                                                   FIRST SEEN   COUNT   NAME
+15s         Normal   Scheduled           pod/app-79999b6c5b-4dskm                             default-scheduler                Successfully assigned 04-service-selector/app-79999b6c5b-4dskm to tcc-lab-control-plane   15s          1       event/app-79999b6c5b-4dskm.18939039aa30c8ba
+14s         Normal   Pulling             pod/app-79999b6c5b-4dskm    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Pulling image "nginx:latest"                                                              14s          1       event/app-79999b6c5b-4dskm.18939039c0d2ac66
+13s         Normal   Pulled              pod/app-79999b6c5b-4dskm    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Successfully pulled image "nginx:latest" in 860.623372ms (860.6302ms including waiting)   13s          1       event/app-79999b6c5b-4dskm.18939039f41efeee
+13s         Normal   Created             pod/app-79999b6c5b-4dskm    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Created container nginx                                                                   13s          1       event/app-79999b6c5b-4dskm.18939039f5312010
+13s         Normal   Started             pod/app-79999b6c5b-4dskm    spec.containers{nginx}   kubelet, tcc-lab-control-plane   Started container nginx                                                                   13s          1       event/app-79999b6c5b-4dskm.18939039f992ed14
+15s         Normal   SuccessfulCreate    replicaset/app-79999b6c5b                            replicaset-controller            Created pod: app-79999b6c5b-4dskm                                                         15s          1       event/app-79999b6c5b.18939039a9d76946
+15s         Normal   ScalingReplicaSet   deployment/app                                       deployment-controller            Scaled up replica set app-79999b6c5b to 1                                                 15s          1       event/app.18939039a964f5ff

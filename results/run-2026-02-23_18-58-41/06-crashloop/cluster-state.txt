@@ -1,0 +1,19 @@
+NAME                             READY   STATUS             RESTARTS      AGE   IP              NODE             NOMINATED NODE   READINESS GATES
+pod/crash-app-85c68bcc8d-jkq6g   0/1     CrashLoopBackOff   1 (11s ago)   15s   192.168.50.74   tcc-lab-worker   <none>           <none>
+
+NAME                        READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES    SELECTOR
+deployment.apps/crash-app   0/1     1            0           15s   crash        busybox   app=crash-app
+
+NAME                                   DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES    SELECTOR
+replicaset.apps/crash-app-85c68bcc8d   1         1         0       15s   crash        busybox   app=crash-app,pod-template-hash=85c68bcc8d
+
+LAST SEEN   TYPE      REASON              OBJECT                            SUBOBJECT                SOURCE                    MESSAGE                                                                                                                           FIRST SEEN   COUNT   NAME
+15s         Normal    Scheduled           pod/crash-app-85c68bcc8d-jkq6g                             default-scheduler         Successfully assigned 06-crashloop/crash-app-85c68bcc8d-jkq6g to tcc-lab-worker                                                   15s          1       event/crash-app-85c68bcc8d-jkq6g.1896ff52fefd9173
+12s         Normal    Pulling             pod/crash-app-85c68bcc8d-jkq6g    spec.containers{crash}   kubelet, tcc-lab-worker   Pulling image "busybox"                                                                                                           15s          2       event/crash-app-85c68bcc8d-jkq6g.1896ff5319797e99
+12s         Normal    Pulled              pod/crash-app-85c68bcc8d-jkq6g    spec.containers{crash}   kubelet, tcc-lab-worker   Successfully pulled image "busybox" in 2.458463137s (2.45846986s including waiting)                                               12s          1       event/crash-app-85c68bcc8d-jkq6g.1896ff53ac02fff9
+11s         Normal    Created             pod/crash-app-85c68bcc8d-jkq6g    spec.containers{crash}   kubelet, tcc-lab-worker   Created container crash                                                                                                           12s          2       event/crash-app-85c68bcc8d-jkq6g.1896ff53ad06b968
+11s         Normal    Started             pod/crash-app-85c68bcc8d-jkq6g    spec.containers{crash}   kubelet, tcc-lab-worker   Started container crash                                                                                                           12s          2       event/crash-app-85c68bcc8d-jkq6g.1896ff53b149d21f
+11s         Normal    Pulled              pod/crash-app-85c68bcc8d-jkq6g    spec.containers{crash}   kubelet, tcc-lab-worker   Successfully pulled image "busybox" in 675.602563ms (675.622584ms including waiting)                                              11s          1       event/crash-app-85c68bcc8d-jkq6g.1896ff53f69c0a16
+10s         Warning   BackOff             pod/crash-app-85c68bcc8d-jkq6g    spec.containers{crash}   kubelet, tcc-lab-worker   Back-off restarting failed container crash in pod crash-app-85c68bcc8d-jkq6g_06-crashloop(a43bb389-6706-40a3-9c1e-53f1af437060)   11s          2       event/crash-app-85c68bcc8d-jkq6g.1896ff540a50dbee
+15s         Normal    SuccessfulCreate    replicaset/crash-app-85c68bcc8d                            replicaset-controller     Created pod: crash-app-85c68bcc8d-jkq6g                                                                                           15s          1       event/crash-app-85c68bcc8d.1896ff52feab6e84
+15s         Normal    ScalingReplicaSet   deployment/crash-app                                       deployment-controller     Scaled up replica set crash-app-85c68bcc8d to 1                                                                                   15s          1       event/crash-app.1896ff52fe4f3e08

@@ -1,0 +1,56 @@
+{
+  "provider": "",
+  "errors": null,
+  "status": "ProblemDetected",
+  "problems": 3,
+  "results": [
+    {
+      "kind": "Deployment",
+      "name": "01-imagepullbackoff/bad-image",
+      "error": [
+        {
+          "Text": "Deployment 01-imagepullbackoff/bad-image has 1 replicas but 0 are available with status running",
+          "KubernetesDoc": "",
+          "Sensitive": [
+            {
+              "Unmasked": "01-imagepullbackoff",
+              "Masked": "ZScmWXtEcG1UcHowRVMhJDZzXw=="
+            },
+            {
+              "Unmasked": "bad-image",
+              "Masked": "aHUoV15sI2cw"
+            }
+          ]
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "01-imagepullbackoff/kube-root-ca.crt",
+      "error": [
+        {
+          "Text": "ConfigMap kube-root-ca.crt is not used by any pods in the namespace",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "Pod",
+      "name": "01-imagepullbackoff/bad-image-78ffccb955-pqt2z",
+      "error": [
+        {
+          "Text": "Back-off pulling image \"nginx:tag-inexistente\"",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": "Deployment/bad-image"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+NAME                       READY   STATUS    RESTARTS   AGE   IP              NODE             NOMINATED NODE   READINESS GATES
+pod/app-79999b6c5b-kftmz   1/1     Running   0          15s   192.168.50.72   tcc-lab-worker   <none>           <none>
+
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/wrong-service   ClusterIP   10.96.238.145   <none>        80/TCP    15s   app=app-wrong
+
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES         SELECTOR
+deployment.apps/app   1/1     1            1           15s   nginx        nginx:latest   app=app-correct
+
+NAME                             DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+replicaset.apps/app-79999b6c5b   1         1         1       15s   nginx        nginx:latest   app=app-correct,pod-template-hash=79999b6c5b
+
+LAST SEEN   TYPE     REASON              OBJECT                      SUBOBJECT                SOURCE                    MESSAGE                                                                                     FIRST SEEN   COUNT   NAME
+15s         Normal   Scheduled           pod/app-79999b6c5b-kftmz                             default-scheduler         Successfully assigned 04-service-selector/app-79999b6c5b-kftmz to tcc-lab-worker            15s          1       event/app-79999b6c5b-kftmz.1896ff3d1e28632c
+15s         Normal   Pulling             pod/app-79999b6c5b-kftmz    spec.containers{nginx}   kubelet, tcc-lab-worker   Pulling image "nginx:latest"                                                                15s          1       event/app-79999b6c5b-kftmz.1896ff3d38802485
+14s         Normal   Pulled              pod/app-79999b6c5b-kftmz    spec.containers{nginx}   kubelet, tcc-lab-worker   Successfully pulled image "nginx:latest" in 652.878701ms (652.951529ms including waiting)   14s          1       event/app-79999b6c5b-kftmz.1896ff3d5f6b8e9c
+14s         Normal   Created             pod/app-79999b6c5b-kftmz    spec.containers{nginx}   kubelet, tcc-lab-worker   Created container nginx                                                                     14s          1       event/app-79999b6c5b-kftmz.1896ff3d60684d42
+14s         Normal   Started             pod/app-79999b6c5b-kftmz    spec.containers{nginx}   kubelet, tcc-lab-worker   Started container nginx                                                                     14s          1       event/app-79999b6c5b-kftmz.1896ff3d64bbda95
+15s         Normal   SuccessfulCreate    replicaset/app-79999b6c5b                            replicaset-controller     Created pod: app-79999b6c5b-kftmz                                                           15s          1       event/app-79999b6c5b.1896ff3d1dcf695a
+15s         Normal   ScalingReplicaSet   deployment/app                                       deployment-controller     Scaled up replica set app-79999b6c5b to 1                                                   15s          1       event/app.1896ff3d1d6ea0e6

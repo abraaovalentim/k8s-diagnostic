@@ -1,0 +1,2 @@
+deployment.apps/server created
+networkpolicy.networking.k8s.io/deny-all created

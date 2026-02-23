@@ -1,13 +1,7 @@
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: scenario-3
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: missing-config
-  namespace: scenario-3
 spec:
   replicas: 1
   selector:

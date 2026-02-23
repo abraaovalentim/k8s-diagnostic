@@ -1,0 +1,2 @@
+deployment.apps/app created
+service/wrong-service created

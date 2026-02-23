@@ -1,0 +1,32 @@
+   0% |                                                | (0/3, 0 it/hr) [0s:0s]                                                                                 33% |██████████████                               | (1/3, 3 it/min) [21s:43s]                                                                                 66% |█████████████████████████████                | (2/3, 4 it/min) [50s:14s]                                                                                100% |█████████████████████████████████████████████| (3/3, 3 it/min)
+AI Provider: ollama
+
+0: Deployment 03-missing-configmap/missing-config()
+- Error: Deployment 03-missing-configmap/missing-config has 1 replicas but 0 are available with status running
+Error: Deployment "03-missing-configmap/missing-config" has 1 replicas but 0 are available with status running.
+
+Solution: 
+1. Check if the ConfigMap is created and available.
+2. Verify if the deployment's configuration references the correct ConfigMap name.
+3. If not, create the missing ConfigMap or update the deployment's configuration to reference an existing one.
+4. Roll out the updated deployment using `kubectl rollout restart` or `kubectl apply`.
+1: ConfigMap 03-missing-configmap/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace.
+
+Solution: 
+1. Check if the ConfigMap is being referenced in a Deployment, StatefulSet, or Pod YAML file.
+2. Verify that the ConfigMap name matches exactly with the one in the YAML file (case-sensitive).
+3. If using a Deployment or StatefulSet, check if the ConfigMap is correctly mounted as a volume or environment variable.
+4. If using a Pod, ensure the ConfigMap is referenced in the pod's spec and the correct path is specified.
+
+Note: The error message indicates that the ConfigMap is not being used by any pods in the namespace, so it's likely an issue with configuration or referencing rather than the ConfigMap itself.
+2: Pod 03-missing-configmap/missing-config-777c8c7857-796gm(Deployment/missing-config)
+- Error: configmap "config-inexistente" not found
+Error: ConfigMap "config-inexistente" not found.
+
+Solution: 
+1. Check if the ConfigMap exists in your Kubernetes cluster using `kubectl get configmaps`.
+2. If it doesn't exist, create a new ConfigMap with the desired configuration.
+3. Verify that the ConfigMap is created successfully and then try to use it again.
+

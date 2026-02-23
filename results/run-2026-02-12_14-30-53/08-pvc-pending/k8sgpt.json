@@ -1,0 +1,69 @@
+{
+  "provider": "",
+  "errors": null,
+  "status": "ProblemDetected",
+  "problems": 4,
+  "results": [
+    {
+      "kind": "Deployment",
+      "name": "08-pvc-pending/pvc-app",
+      "error": [
+        {
+          "Text": "Deployment 08-pvc-pending/pvc-app has 1 replicas but 0 are available with status running",
+          "KubernetesDoc": "",
+          "Sensitive": [
+            {
+              "Unmasked": "08-pvc-pending",
+              "Masked": "QEpkX2xsTX14RzAhVjo="
+            },
+            {
+              "Unmasked": "pvc-app",
+              "Masked": "VVhsYlJjQg=="
+            }
+          ]
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "PersistentVolumeClaim",
+      "name": "08-pvc-pending/bad-pvc",
+      "error": [
+        {
+          "Text": "storageclass.storage.k8s.io \"storage-inexistente\" not found",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "08-pvc-pending/kube-root-ca.crt",
+      "error": [
+        {
+          "Text": "ConfigMap kube-root-ca.crt is not used by any pods in the namespace",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "Pod",
+      "name": "08-pvc-pending/pvc-app-6d9b4f8998-xdzsc",
+      "error": [
+        {
+          "Text": "0/1 nodes are available: pod has unbound immediate PersistentVolumeClaims. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod..",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": "Deployment/pvc-app"
+    }
+  ]
+}

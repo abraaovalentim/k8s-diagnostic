@@ -1,0 +1,17 @@
+NAME                           READY   STATUS    RESTARTS   AGE   IP       NODE     NOMINATED NODE   READINESS GATES
+pod/pvc-app-6d9b4f8998-w6647   0/1     Pending   0          15s   <none>   <none>   <none>           <none>
+
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES         SELECTOR
+deployment.apps/pvc-app   0/1     1            0           15s   nginx        nginx:latest   app=pvc-app
+
+NAME                                 DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES         SELECTOR
+replicaset.apps/pvc-app-6d9b4f8998   1         1         0       15s   nginx        nginx:latest   app=pvc-app,pod-template-hash=6d9b4f8998
+
+LAST SEEN   TYPE      REASON               OBJECT                          SUBOBJECT   SOURCE                        MESSAGE                                                                                                                                                            FIRST SEEN   COUNT   NAME
+3s          Warning   ProvisioningFailed   persistentvolumeclaim/bad-pvc               persistentvolume-controller   storageclass.storage.k8s.io "storage-inexistente" not found                                                                                                        15s          2       event/bad-pvc.1896ff777472009c
+15s         Warning   FailedScheduling     pod/pvc-app-6d9b4f8998-w6647                default-scheduler             0/2 nodes are available: pod has unbound immediate PersistentVolumeClaims. preemption: 0/2 nodes are available: 2 No preemption victims found for incoming pod..   15s          1       event/pvc-app-6d9b4f8998-w6647.1896ff77756ba50b
+15s         Normal    SuccessfulCreate     replicaset/pvc-app-6d9b4f8998               replicaset-controller         Created pod: pvc-app-6d9b4f8998-w6647                                                                                                                              15s          1       event/pvc-app-6d9b4f8998.1896ff777566fb16
+15s         Normal    ScalingReplicaSet    deployment/pvc-app                          deployment-controller         Scaled up replica set pvc-app-6d9b4f8998 to 1                                                                                                                      15s          1       event/pvc-app.1896ff7775246608
+
+NAME                            STATUS    VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS          AGE   VOLUMEMODE
+persistentvolumeclaim/bad-pvc   Pending                                      storage-inexistente   15s   Filesystem

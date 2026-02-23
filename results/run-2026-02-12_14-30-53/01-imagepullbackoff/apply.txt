@@ -1,0 +1,1 @@
+deployment.apps/bad-image created

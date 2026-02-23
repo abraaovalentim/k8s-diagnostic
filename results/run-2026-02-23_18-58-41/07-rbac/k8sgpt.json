@@ -1,0 +1,56 @@
+{
+  "provider": "",
+  "errors": null,
+  "status": "ProblemDetected",
+  "problems": 3,
+  "results": [
+    {
+      "kind": "Deployment",
+      "name": "07-rbac/rbac-test",
+      "error": [
+        {
+          "Text": "Deployment 07-rbac/rbac-test has 1 replicas but 0 are available with status running",
+          "KubernetesDoc": "",
+          "Sensitive": [
+            {
+              "Unmasked": "07-rbac",
+              "Masked": "MTtdbTplRw=="
+            },
+            {
+              "Unmasked": "rbac-test",
+              "Masked": "T2x1e09fPF9b"
+            }
+          ]
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "ConfigMap",
+      "name": "07-rbac/kube-root-ca.crt",
+      "error": [
+        {
+          "Text": "ConfigMap kube-root-ca.crt is not used by any pods in the namespace",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": ""
+    },
+    {
+      "kind": "Pod",
+      "name": "07-rbac/rbac-test-cb7dcb677-blcpw",
+      "error": [
+        {
+          "Text": "the last termination reason is Error container=kubectl pod=rbac-test-cb7dcb677-blcpw",
+          "KubernetesDoc": "",
+          "Sensitive": []
+        }
+      ],
+      "details": "",
+      "parentObject": "Deployment/rbac-test"
+    }
+  ]
+}

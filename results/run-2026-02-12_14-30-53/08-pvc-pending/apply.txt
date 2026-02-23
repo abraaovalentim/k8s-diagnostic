@@ -1,0 +1,2 @@
+persistentvolumeclaim/bad-pvc created
+deployment.apps/pvc-app created

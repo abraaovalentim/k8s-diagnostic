@@ -1,0 +1,39 @@
+   0% |                                                | (0/4, 0 it/hr) [0s:0s]                                                                                 25% |███████████                                 | (1/4, 3 it/min) [21s:1m3s]                                                                                 50% |██████████████████████                       | (2/4, 6 it/min) [42s:21s]                                                                                 75% |█████████████████████████████████            | (3/4, 5 it/min) [58s:12s]                                                                                100% |████████████████████████████████████████████| (4/4, 3 it/min)
+AI Provider: ollama
+
+0: Deployment 08-pvc-pending/pvc-app()
+- Error: Deployment 08-pvc-pending/pvc-app has 1 replicas but 0 are available with status running
+Error: Deployment "08-pvc-pending/pvc-app" has 1 replica but 0 are available with status running.
+
+Solution: 
+1. Check PVC (Persistent Volume Claim) creation status.
+2. Verify if the PVC is bound to a Persistent Volume.
+3. If not, check PV (Persistent Volume) availability and ensure it's not stuck in "Pending" state.
+4. Update Deployment configuration to use an existing PV or create a new one if necessary.
+5. Roll out the updated Deployment to bring replicas online.
+1: ConfigMap 08-pvc-pending/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace.
+
+Solution: 
+1. Check if the ConfigMap is actually created: `kubectl get configmaps`
+2. Verify if the ConfigMap is being used by a pod: `kubectl describe pod <pod_name> | grep -A3 "ConfigMap"`
+3. If no pods are using it, update the pod's configuration to reference the ConfigMap.
+4. Alternatively, delete the unused ConfigMap: `kubectl delete configmap kube-root-ca.crt`
+2: PersistentVolumeClaim 08-pvc-pending/bad-pvc()
+- Error: storageclass.storage.k8s.io "storage-inexistente" not found
+Error: The specified StorageClass "storage-inexistente" is not found.
+
+Solution: 
+1. Check if the StorageClass exists in your cluster using `kubectl get storageclass`.
+2. If it doesn't exist, create a new StorageClass that matches the name and parameters required by your application.
+3. Apply the new StorageClass to your Persistent Volume Claim (PVC) or Pod configuration.
+3: Pod 08-pvc-pending/pvc-app-6d9b4f8998-xdzsc(Deployment/pvc-app)
+- Error: 0/1 nodes are available: pod has unbound immediate PersistentVolumeClaims. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod..
+Error: The message indicates that there are no available nodes to schedule the pod due to unbound PersistentVolumeClaims (PVCs) and no preemption victims found.
+
+Solution: 
+1. Check PVC status using `kubectl get pvc` and ensure they are bound to a PV.
+2. If PVCs are not bound, create a PV with sufficient capacity using `kubectl apply -f <pv.yaml>`.
+3. Once PVCs are bound, retry pod deployment using `kubectl apply -f <pod.yaml>` or `kubectl rollout restart <deployment_name>`.
+

@@ -1,0 +1,31 @@
+   0% |                                                | (0/3, 0 it/hr) [0s:0s]                                                                                 33% |██████████████                               | (1/3, 3 it/min) [22s:44s]                                                                                 66% |█████████████████████████████                | (2/3, 6 it/min) [43s:10s]                                                                                100% |█████████████████████████████████████████████| (3/3, 3 it/min)
+AI Provider: ollama
+
+0: Deployment 06-crashloop/crash-app()
+- Error: Deployment 06-crashloop/crash-app has 1 replicas but 0 are available with status running
+Error: Deployment "06-crashloop/crash-app" has 1 replicas but 0 are available with status running.
+
+Solution: 
+1. Check logs for container crashes using `kubectl logs -f deployment/06-crashloop/crash-app`.
+2. Verify if the image is correct and reachable.
+3. Run `kubectl rollout history deployment/06-crashloop/crash-app` to check previous deployments' logs.
+4. If issues persist, try restarting the deployment with `kubectl rollout restart deployment/06-crashloop/crash-app`.
+1: ConfigMap 06-crashloop/kube-root-ca.crt()
+- Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace
+Error: ConfigMap kube-root-ca.crt is not used by any pods in the namespace.
+
+Solution: 
+1. Check if the ConfigMap is created correctly using `kubectl get configmap kube-root-ca.crt -o yaml`.
+2. Verify if the ConfigMap is referenced in a Deployment, StatefulSet, or Pod YAML file.
+3. If not, create a new Deployment or StatefulSet that uses the ConfigMap as a volume or environment variable.
+4. Apply the changes using `kubectl apply` and verify the ConfigMap is being used by the pods.
+2: Pod 06-crashloop/crash-app-85c68bcc8d-qk776(Deployment/crash-app)
+- Error: the last termination reason is Error container=crash pod=crash-app-85c68bcc8d-qk776
+Error: The pod "crash-app-85c68bcc8d-qk776" terminated due to a container crash.
+
+Solution: 
+1. Check the container logs for errors using `kubectl logs -n <namespace> crash-app-85c68bcc8d-qk776`.
+2. Verify the container image and configuration.
+3. Run `kubectl describe pod crash-app-85c68bcc8d-qk776` to gather more information about the termination reason.
+4. If necessary, restart the pod using `kubectl rollout restart deployment <deployment-name>`.
+
